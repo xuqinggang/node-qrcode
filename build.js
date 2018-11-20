@@ -43,7 +43,7 @@ function minify (inputFile, outputFile, onDone) {
    inputFile.white + ' -> '.grey + outputFile.white)
 
   var uglify = spawn('node', [
-    'node_modules/.bin/uglifyjs',
+    'node_modules/uglify-js/.bin/uglifyjs',
     '--compress', '--mangle',
     '--source-map', outputFile + '.map',
     '--source-map-url', path.basename(outputFile) + '.map',
@@ -54,7 +54,7 @@ function minify (inputFile, outputFile, onDone) {
   uglify.stdin.end()
   uglify.on('exit', function (code) {
     if (code) {
-      console.error('uglify failed!')
+      console.error('uglify failed!', code)
       fs.unlink(outputFile, function () {
         process.exit(code)
       })
@@ -68,8 +68,8 @@ var q = [
   createFolder.bind(null, './build', done),
   bundle.bind(null, 'lib/index.js', 'QRCode', 'build/qrcode.js', done),
   bundle.bind(null, 'helper/to-sjis.js', 'QRCode.toSJIS', 'build/qrcode.tosjis.js', done),
-  minify.bind(null, 'build/qrcode.js', 'build/qrcode.min.js', done),
-  minify.bind(null, 'build/qrcode.tosjis.js', 'build/qrcode.tosjis.min.js', done)
+  // minify.bind(null, 'build/qrcode.js', 'build/qrcode.min.js', done),
+  // minify.bind(null, 'build/qrcode.tosjis.js', 'build/qrcode.tosjis.min.js', done)
 ]
 
 function done () {
