@@ -1,7 +1,7 @@
 {
   "name": "qrcode-color",
   "description": "QRCode / 2d Barcode api with both server side and client side support using canvas",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "xuqinggangsls@163.com",
   "keywords": [
     "canvas",
